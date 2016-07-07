@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+      google.load("visualization", "1", {packages:["corechart"]});
+      google.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['ranking', '8th', '7th', '6th', '5th', '4th', '3rd', '2nd', '1st'],
+          <% results.forEach(function(result){ %>
+            [<%= result.ranking %>, <%= result.eighth_final_votes %>, <%= result.seventh_final_votes %>, <%= result.sixth_final_votes %>, <%= result.fifth_final_votes %>, <%= result.fourth_final_votes %>, <%= result.third_final_votes %>, <%= result.second_final_votes %>, <%= result.first_final_votes %>],
+          <% }) %>
+        ]);
+        // グラフのオプションを設定
+        var options = {
+          title: 'AKB選抜総選挙'
+        };
+        var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+
+    <div id="chart_div" style="width: 80%; height: 400px;"></div>
+
+  </body>
+</html>
