@@ -1,0 +1,7 @@
+# akBigData
+AKB48グループのビッグデータを作りたいと思っています。
+
+# メモ
+$ mkdir akBigData
+$ cd ..
+$ express -e akBigData
